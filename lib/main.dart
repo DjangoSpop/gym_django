@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -87,18 +88,127 @@ class MyApp extends StatelessWidget {
       name: 'Day 2: Back and Biceps',
       exercises: [
         Exercise(
-          name: 'Pull-Ups',
+          name: 'Wide Grips Lats Pull Down & Reverse Grip Lats Pull Down ',
           description: 'Description for Pull-Ups',
           sets: '3',
-          reps: '8',
+          reps: '10 , 10 , 8 EACH',
         ),
         Exercise(
-          name: 'Barbell Curls',
-          description: 'Description for Barbell Curls',
+          name: 'Cable Pull over',
+          description: 'Pull Over Free Form ',
+          sets: '3',
+          reps: '15 - 12 - 10',
+        ),
+        Exercise(
+          name: 'DB ONE ARM',
+          description: 'Description for Seated Cable Row',
+          sets: '3',
+          reps: '10 - 10 - 10',
+        ),
+        Exercise(
+          name: 'SEATED CABLE ROW',
+          description: 'Description for Seated Cable Row',
+          sets: '3',
+          reps: '12 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Dead Lift',
+          description: 'Good Form Is A Must and Dont Carry to much',
+          sets: '3',
+          reps: '15 - 15 - 15',
+        ),
+        Exercise(
+          name: 'EZ BAR CURLS',
+          description: 'Description for EZ Bar Curls',
+          sets: '3',
+          reps: '12 - 10 - 8',
+        ),
+        Exercise(
+          name: 'DB HAMMER CURLS',
+          description: 'Description for DB Hammer Curls',
+          sets: '3',
+          reps: '12 - 10 - 8',
+        ),
+        Exercise(
+          name: 'DB CONCENTRATION CURLS',
+          description: 'Description for DB Concentration Curls',
+          sets: '3',
+          reps: '12 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Cable High Pully Curls',
+          description: 'Description for DB Preacher Curls',
           sets: '4',
-          reps: '10',
+          reps: '12 - 10 - 10 - 8',
         ),
         // Add more exercises for Day 2
+      ],
+    ),
+    // Add more workout days
+    WorkoutDay(
+      name: 'Day 3: Legs and Shoulders',
+      exercises: [
+        Exercise(
+          name: 'Leg Press',
+          description: 'Description for Leg Press',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Leg Extension',
+          description: 'Description for Leg Extension',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Leg Curl',
+          description: 'Description for Leg Curl',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Squats',
+          description: 'Description for Squats',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Seated Calf Raise',
+          description: 'Description for Seated Calf Raise',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Standing Calf Raise',
+          description: 'Description for Standing Calf Raise',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Shoulder Press',
+          description: 'Description for Shoulder Press',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Lateral Raise',
+          description: 'Description for Lateral Raise',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Front Raise',
+          description: 'Description for Front Raise',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        Exercise(
+          name: 'Rear Delt Fly',
+          description: 'Description for Rear Delt Fly',
+          sets: '4',
+          reps: '12 - 10 - 10 - 8',
+        ),
+        // Add more exercises for Day 3
       ],
     ),
     // Add more workout days here (Day 3, Day 4, etc.)
@@ -211,6 +321,11 @@ class ExerciseDetailsScreen extends StatelessWidget {
             SizedBox(height: 20.0),
             // You can add an image here if needed, or leave it blank as per your requirement
             ElevatedButton(
+              //change color of button
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.red,
+              ),
               onPressed: () {
                 // Navigate back to the exercise list
                 Navigator.of(context).pop();

@@ -27,21 +27,60 @@ class WorkoutDay {
 class MyApp extends StatelessWidget {
   final List<WorkoutDay> workoutDays = [
     WorkoutDay(
-      name: 'Day 1: Chest and Triceps',
+      name: 'Day 1: Chest and Triceps ABS',
       exercises: [
         Exercise(
           name: 'Bench Press',
           description: 'Description for Bench Press',
           sets: '4',
-          reps: '10',
+          reps: '12-16, 10 , 10 ,8 > DropSet',
         ),
         Exercise(
-          name: 'Tricep Dips',
-          description: 'Description for Tricep Dips',
-          sets: '3',
-          reps: '12',
+          name: 'incline DB Press',
+          description: 'Incline DB PRESS Keep Form Concentrate on rep',
+          sets: '4',
+          reps: '12-16 , 10 , 10 , 8',
+          //          dropset: true, // TODO add a checkbox to the form so that users can choose if they want to do it or not
         ),
-        // Add more exercises for Day 1
+        Exercise(
+          name: 'Cable high Cross Super Set',
+          description: 'With Cable Cross over',
+          sets: '3 Each',
+          reps: '12 , 10 ,8',
+        ),
+        Exercise(
+          name: 'Decline Chest machine',
+          description: 'Chest machine Decline keep form',
+          sets: '4',
+          reps: '12-16 ,10,10,8 DROP SET',
+        ),
+        Exercise(
+          name: 'Chest Fly Machine',
+          description: 'Chest Fly Machine',
+          sets: '3',
+          reps: '15 Each',
+        ),
+        Exercise(
+            name: 'Triceps Cable Push Down Super Set & Reverse grip push Down',
+            description: 'triceps push down',
+            sets: '3',
+            reps: '10 , 10 , 8'),
+        Exercise(
+            name: 'EZ Skull CRUSHER',
+            description: 'Zigzag Bar on siting to concentrate on form ',
+            sets: '4',
+            reps: '12 , 10 , 10, 8 DROP SET'),
+        Exercise(
+            name: ' Crunches Abs',
+            description: 'Crunches',
+            sets: '4',
+            reps: '25'),
+        Exercise(
+            name: 'Lying HIP RAISE',
+            description:
+                ' Good Form on siting and concentrateing on the form not the quantity ',
+            sets: '4',
+            reps: '25')
       ],
     ),
     WorkoutDay(

@@ -11,6 +11,7 @@ class Exercise {
   final String reps;
   bool isCompleted;
   final String assetPath;
+  // final List<String> comments;
 
   //add asset pic constructor
   //final String image;
@@ -22,6 +23,7 @@ class Exercise {
     required this.reps,
     required this.assetPath,
     this.isCompleted = false,
+    // this.comments = const [],
   });
 }
 
@@ -38,11 +40,12 @@ class MyApp extends StatelessWidget {
       name: 'Day 1: Chest and Triceps ABS',
       exercises: [
         Exercise(
-            name: 'Bench Press',
-            description: 'Description for Bench Press',
-            sets: '4',
-            reps: '12-16, 10 , 10 ,8 > DropSet',
-            assetPath: 'assets/exercise 1.png'),
+          name: 'Bench Press',
+          description: 'Description for Bench Press',
+          sets: '4',
+          reps: '12-16, 10 , 10 ,8 > DropSet',
+          assetPath: 'assets/exercise 1.png',
+        ),
         Exercise(
             name: 'incline DB Press',
             description: 'Incline DB PRESS Keep Form Concentrate on rep',
@@ -304,49 +307,28 @@ class MyApp extends StatelessWidget {
           description: 'DB BICEPS CURLS & OVER HEAD EXTENSION ',
           sets: '4',
           reps: '12-16 + 12-16 EACH',
+          assetPath: 'assets/dbcurl.jpeg',
         ),
         Exercise(
           name: 'EZ PRECHER CURLS & ROPE PUSH DOWN',
           description: 'ZIGZAG MACHINE BICEPS ROPE PUSH TRICEPS ',
           sets: '4',
           reps: '12 - 16 + 12-16',
+          assetPath: 'assets/ezcurl.png',
         ),
         Exercise(
-          name: 'HUMMERS CURLS & TRICEPS KICK BACK',
-          description: 'TRICEPS KICK BACK',
-          sets: '4',
-          reps: '12-16 - 12-16',
-        ),
+            name: 'HUMMERS CURLS & TRICEPS KICK BACK',
+            description: 'TRICEPS KICK BACK',
+            sets: '4',
+            reps: '12-16 - 12-16',
+            assetPath: 'assets/hamer.png'),
         Exercise(
-          name: 'ABS GIANT SET DO ALL EXERCISE IN A CERCIUT OF 3 ROUNDS',
-          description: 'PUL LEGS UP TO ABS & CRUNCES & TWISTS ',
-          sets: '3',
-          reps: '25 - 25 - 10 EACH SIDE',
-        ),
-        Exercise(
-          name: 'EZ BAR CURLS',
-          description: 'Description for EZ Bar Curls',
-          sets: '3',
-          reps: '12 - 10 - 8',
-        ),
-        Exercise(
-          name: 'DB HAMMER CURLS',
-          description: 'Description for DB Hammer Curls',
-          sets: '3',
-          reps: '12 - 10 - 8',
-        ),
-        Exercise(
-          name: 'DB CONCENTRATION CURLS',
-          description: 'Description for DB Concentration Curls',
-          sets: '3',
-          reps: '12 - 10 - 8',
-        ),
-        Exercise(
-          name: 'Cable High Pully Curls',
-          description: 'Description for DB Preacher Curls',
-          sets: '4',
-          reps: '12 - 10 - 10 - 8',
-        ),
+            name: 'ABS GIANT SET DO ALL EXERCISE IN A CERCIUT OF 3 ROUNDS',
+            description: 'PUL LEGS UP TO ABS & CRUNCES & TWISTS ',
+            sets: '3',
+            reps: '25 - 25 - 10 EACH SIDE',
+            assetPath: 'assets/absgiant.png'),
+
         // Add more exercises for Day 2
       ],
     ),
@@ -362,7 +344,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF04003B),
         // Define a text theme with white text color
         textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
       home: WorkoutDayListScreen(workoutDays: workoutDays),
@@ -403,11 +386,16 @@ class WorkoutDayListScreen extends StatelessWidget {
   }
 }
 
-class ExerciseListScreen extends StatelessWidget {
+class ExerciseListScreen extends StatefulWidget {
   final List<Exercise> exercises;
 
   ExerciseListScreen({required this.exercises});
 
+  @override
+  State<ExerciseListScreen> createState() => _ExerciseListScreenState();
+}
+
+class _ExerciseListScreenState extends State<ExerciseListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -415,21 +403,38 @@ class ExerciseListScreen extends StatelessWidget {
         title: Text('Exercises'),
       ),
       body: ListView.builder(
-        itemCount: exercises.length,
+        itemCount: widget.exercises.length,
         itemBuilder: (BuildContext context, int index) {
-          final exercise = exercises[index];
-          return ListTile(
-            title: Text(exercise.name),
-            subtitle: Text('Sets: ${exercise.sets}, Reps: ${exercise.reps}'),
-            onTap: () {
-              // Navigate to the exercise details screen
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      ExerciseDetailsScreen(exercise: exercise),
-                ),
-              );
+          final exercise = widget.exercises[index];
+          return Dismissible(
+            key: Key(exercise.name),
+            onDismissed: (direction) {
+              setState(() {
+                widget.exercises.removeAt(index);
+              });
             },
+            background: Container(
+              color: Colors.red,
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.delete_forever,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+            child: ListTile(
+              title: Text(exercise.name),
+              subtitle: Text('Sets: ${exercise.sets}, Reps: ${exercise.reps}'),
+              onTap: () {
+                // Navigate to the exercise details screen
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ExerciseDetailsScreen(exercise: exercise),
+                  ),
+                );
+              },
+            ),
           );
         },
       ),
@@ -449,7 +454,7 @@ class ExerciseDetailsScreen extends StatelessWidget {
         title: Text(exercise.name),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -459,21 +464,24 @@ class ExerciseDetailsScreen extends StatelessWidget {
             ),
             Text(
               exercise.description,
-              style: TextStyle(fontSize: 16.0),
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
             ListTile(
               title: Text(exercise.name),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: exercise.comments.map((comment) {
-                  return Text(comment);
-                }).toList(),
               ),
             ),
 
             const SizedBox(height: 200),
             //add an image asset called exercise 1
-            Image.asset(exercise.assetPath, height: 200, fit: BoxFit.cover),
+            Center(
+              child: Image.asset(
+                exercise.assetPath,
+                height: 250,
+                fit: BoxFit.cover,
+              ),
+            ),
             //add an image asset called exercise 2
             //Image.asset('assets/images/exercise2.jpg'),
 
